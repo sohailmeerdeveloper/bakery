@@ -15,6 +15,7 @@
     --paper:#e8edf1;
     --muted:#8a9aa8;
     --rule:rgba(232,237,241,.12);
+    --rule-2:rgba(232,237,241,.22);
     --tide:#5cc2d6;
     --tide-2:#3aa5bd;
   }
@@ -24,260 +25,207 @@
     font-family:"Poppins",sans-serif;
     background:var(--bg);
     color:var(--paper);
-    font-weight:400;
-    font-size:15px;
-    line-height:1.6;
+    font-weight:400;font-size:15px;line-height:1.6;
     -webkit-font-smoothing:antialiased;
   }
-
-  /* Nav */
-  nav{
-    border-bottom:1px solid var(--rule);
-    position:sticky;top:0;z-index:50;background:rgba(6,19,31,.85);
-    backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
-  }
-  .nav-inner{
-    max-width:1180px;margin:0 auto;padding:18px 28px;
-    display:flex;align-items:center;justify-content:space-between;gap:20px;
-  }
-  .brand{font-weight:600;font-size:17px;letter-spacing:-.01em}
-  .brand span{color:var(--tide)}
-  .nav-links{display:flex;gap:26px}
-  .nav-links a{color:var(--muted);text-decoration:none;font-size:14px;transition:color .2s}
-  .nav-links a:hover{color:var(--paper)}
-  @media(max-width:640px){.nav-links{display:none}.nav-inner{padding:16px 22px}}
-
   .wrap{max-width:1180px;margin:0 auto;padding:0 28px}
-  @media(max-width:640px){.wrap{padding:0 22px}}
+  @media(max-width:560px){.wrap{padding:0 18px}}
 
-  /* Hero */
-  header.hero{padding:80px 0 60px;text-align:center}
-  header.hero h1{
-    font-weight:600;font-size:clamp(40px,6vw,72px);
-    letter-spacing:-.025em;line-height:1.05;margin:0;
-  }
-  header.hero h1 span{color:var(--tide)}
-  header.hero p{
-    margin:18px auto 0;max-width:560px;color:var(--muted);font-size:16px;
-  }
+  /* Header */
+  header{padding:48px 0 18px;text-align:center}
+  header h1{font-size:clamp(38px,6vw,64px);font-weight:600;letter-spacing:-.02em;margin:0;line-height:1.05}
+  header h1 span{color:var(--tide)}
+  header p{color:var(--muted);font-size:15px;margin:10px 0 0}
 
   /* Sections */
-  section{padding:60px 0;border-top:1px solid var(--rule)}
-  h2{font-weight:600;font-size:clamp(22px,2.8vw,28px);letter-spacing:-.015em;margin:0 0 26px}
-
-  /* KPI cards */
-  .kpis{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
-  .kpi{
-    padding:20px 18px;border:1px solid var(--rule);border-radius:6px;
-    background:rgba(10,29,46,.4);
-  }
-  .kpi .lbl{font-size:12px;color:var(--muted);margin-bottom:10px}
-  .kpi .val{font-size:22px;font-weight:600;letter-spacing:-.02em;color:var(--paper);line-height:1.1}
-  @media(max-width:980px){.kpis{grid-template-columns:repeat(3,1fr)}}
-  @media(max-width:560px){.kpis{grid-template-columns:repeat(2,1fr)}}
+  section{padding:36px 0}
+  h2{font-size:22px;font-weight:600;margin:0 0 18px;letter-spacing:-.01em}
 
   /* Charts */
-  .charts{display:grid;grid-template-columns:1.4fr 1fr;gap:20px}
+  .charts{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .chart-card{
+    background:var(--bg-2);border:1px solid var(--rule);border-radius:6px;padding:18px 18px 8px;
+  }
+  .chart-card.wide{grid-column:1 / -1}
+  @media(max-width:820px){.charts{grid-template-columns:1fr}.chart-card.wide{grid-column:auto}}
+  .chart-card h3{margin:0 0 4px;font-size:15px;font-weight:600}
+  .chart-card .sub{color:var(--muted);font-size:12.5px;margin-bottom:8px}
+  .chart-host{min-height:300px}
+
+  /* Editor + KPI side by side */
   .panel{
-    border:1px solid var(--rule);border-radius:6px;background:rgba(10,29,46,.4);
-    padding:24px;
-  }
-  .panel.wide{grid-column:1 / -1}
-  .panel-head{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-bottom:14px}
-  .panel-head h3{font-weight:600;font-size:16px;margin:0;letter-spacing:-.01em}
-  .chart-host{width:100%;min-height:300px}
-  .inspect{
-    background:transparent;border:1px solid var(--rule);color:var(--muted);
-    font-family:inherit;font-size:13px;padding:7px 14px;border-radius:5px;cursor:pointer;
-    transition:.2s;
-  }
-  .inspect:hover{color:var(--paper);border-color:var(--tide)}
-  @media(max-width:880px){.charts{grid-template-columns:1fr}.panel.wide{grid-column:auto}}
-
-  /* Footer */
-  footer{
-    border-top:1px solid var(--rule);
-    margin-top:60px;padding:24px 0;
-    text-align:center;color:var(--muted);font-size:13px;
-  }
-
-  /* Modal */
-  .modal-back{
-    position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center;
-    background:rgba(3,10,18,.75);backdrop-filter:blur(6px);
-    padding:20px;
-  }
-  .modal-back.open{display:flex}
-  .modal{
-    width:min(800px,100%);max-height:88vh;overflow:auto;
     background:var(--bg-2);border:1px solid var(--rule);border-radius:6px;
   }
-  .modal header{
-    position:sticky;top:0;background:var(--bg-2);z-index:2;
-    padding:20px 24px 14px;display:flex;justify-content:space-between;align-items:center;
-    border-bottom:1px solid var(--rule);
-  }
-  .modal header h3{font-weight:600;font-size:17px;margin:0}
-  .x{background:transparent;border:1px solid var(--rule);color:var(--muted);width:30px;height:30px;border-radius:4px;cursor:pointer;font-size:14px}
-  .x:hover{color:var(--paper);border-color:var(--tide)}
-  .modal-body{padding:20px 24px 24px}
-  .tabs{display:flex;border-bottom:1px solid var(--rule);margin-bottom:18px}
-  .tab{
-    background:transparent;border:0;color:var(--muted);padding:10px 16px;cursor:pointer;
-    font-family:inherit;font-size:13.5px;border-bottom:2px solid transparent;margin-bottom:-1px;
-  }
-  .tab.active{color:var(--paper);border-bottom-color:var(--tide)}
-  .pane{display:none}
-  .pane.active{display:block}
+  .panel h2{padding:18px 20px 0;margin:0 0 14px}
+  .panel .hint{padding:0 20px;color:var(--muted);font-size:13px;margin:-8px 0 14px}
 
-  table.data{width:100%;border-collapse:collapse;font-size:13px}
-  table.data th,table.data td{padding:9px 10px;text-align:left;border-bottom:1px solid var(--rule)}
-  table.data th{font-size:12px;color:var(--muted);font-weight:500}
-  table.data td.num{text-align:right;font-variant-numeric:tabular-nums}
-  table.data code{color:var(--tide);font-size:12px;background:rgba(92,194,214,.08);padding:2px 6px;border-radius:3px}
-  table.data input{
-    width:90px;background:rgba(0,0,0,.25);border:1px solid var(--rule);color:var(--paper);
-    padding:5px 8px;border-radius:3px;font-family:inherit;font-size:13px;text-align:right;
+  .edit-grid{display:grid;grid-template-columns:1.6fr 1fr;gap:18px;align-items:start}
+  @media(max-width:920px){.edit-grid{grid-template-columns:1fr}}
+
+  /* Data table */
+  .table-wrap{max-height:520px;overflow:auto;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+  table{width:100%;border-collapse:collapse;font-size:13.5px}
+  thead th{
+    position:sticky;top:0;background:var(--bg-2);
+    text-align:left;padding:10px 12px;font-weight:600;font-size:11.5px;color:var(--muted);
+    letter-spacing:.04em;text-transform:uppercase;border-bottom:1px solid var(--rule);
   }
-  table.data input:focus{outline:none;border-color:var(--tide)}
-  .formula{
-    background:#040d17;border:1px solid var(--rule);border-radius:4px;padding:18px 20px;
-    font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px;color:var(--muted);
-    line-height:1.9;white-space:pre-wrap;overflow-x:auto;
+  tbody td{padding:8px 12px;border-bottom:1px solid var(--rule)}
+  tbody tr:hover{background:rgba(92,194,214,.04)}
+  td.num{text-align:right;font-variant-numeric:tabular-nums}
+  td input{
+    width:100%;background:rgba(0,0,0,.25);border:1px solid var(--rule);color:var(--paper);
+    padding:5px 8px;border-radius:4px;font:inherit;font-size:13px;text-align:right;font-variant-numeric:tabular-nums;
   }
-  .formula b{color:var(--tide);font-weight:500}
-  .formula .res{color:var(--paper)}
-  .actions{display:flex;justify-content:space-between;gap:10px;margin-top:18px}
-  .btn{
-    font-family:inherit;font-size:13px;padding:9px 16px;border-radius:4px;cursor:pointer;
-    border:1px solid var(--rule);background:transparent;color:var(--muted);
+  td input:focus{outline:none;border-color:var(--tide);background:rgba(92,194,214,.06)}
+  .table-foot{padding:12px 20px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+  .reset{
+    font:inherit;font-size:13px;font-weight:500;padding:8px 14px;border-radius:4px;cursor:pointer;
+    background:transparent;color:var(--paper);border:1px solid var(--rule-2);transition:.2s;
   }
-  .btn:hover{color:var(--paper);border-color:var(--tide)}
-  .btn.primary{background:var(--tide);border-color:var(--tide);color:var(--bg);font-weight:500}
+  .reset:hover{border-color:var(--tide);color:var(--tide)}
+  .table-foot .total{color:var(--muted);font-size:13px}
+  .table-foot .total b{color:var(--paper);font-weight:600}
+
+  /* KPI list */
+  .kpi-list{padding:6px 0 14px}
+  .kpi-list .row{
+    display:flex;justify-content:space-between;align-items:baseline;gap:10px;
+    padding:12px 20px;border-bottom:1px solid var(--rule);
+  }
+  .kpi-list .row:last-child{border-bottom:0}
+  .kpi-list .lbl{font-size:13px;color:var(--muted)}
+  .kpi-list .val{font-size:18px;font-weight:600;letter-spacing:-.01em;font-variant-numeric:tabular-nums}
+  .kpi-list .form{font-size:11px;color:var(--tide);font-weight:400;display:block;margin-top:2px}
+
+  /* Findings */
+  .findings{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  @media(max-width:680px){.findings{grid-template-columns:1fr}}
+  .finding{
+    background:var(--bg-2);border:1px solid var(--rule);border-radius:6px;padding:16px 18px;
+    font-size:14px;color:var(--paper);
+  }
+  .finding b{display:block;color:var(--tide);font-size:11.5px;font-weight:600;letter-spacing:.06em;margin-bottom:6px;text-transform:uppercase}
+
+  footer{padding:30px 0 36px;border-top:1px solid var(--rule);margin-top:30px;color:var(--muted);font-size:13px;text-align:center}
 
   :focus-visible{outline:2px solid var(--tide);outline-offset:2px}
 </style>
 </head>
 <body>
 
-<nav>
-  <div class="nav-inner">
-    <div class="brand">Heavenly <span>Layers</span></div>
-    <div class="nav-links">
-      <a href="#metrics">Metrics</a>
-      <a href="#charts">Charts</a>
-    </div>
-  </div>
-</nav>
+<div class="wrap">
 
-<header class="hero">
-  <div class="wrap">
+  <header>
     <h1>Heavenly <span>Layers</span></h1>
-    <p>Sales dashboard for the bakery — 20 orders, 7 months, 6 products.</p>
-  </div>
-</header>
+    <p>Sales dashboard · 20 orders · Jan – July</p>
+  </header>
 
-<main>
-  <section id="metrics">
-    <div class="wrap">
-      <h2>Key metrics</h2>
-      <div class="kpis" id="kpis"></div>
-    </div>
-  </section>
-
-  <section id="charts">
-    <div class="wrap">
-      <h2>Charts</h2>
-      <div class="charts">
-        <div class="panel wide">
-          <div class="panel-head">
-            <h3>Monthly Sales</h3>
-            <button class="inspect" onclick="openModal('line')">Inspect</button>
-          </div>
-          <div class="chart-host" id="chart-line"></div>
-        </div>
-        <div class="panel">
-          <div class="panel-head">
-            <h3>Product Wise Sales</h3>
-            <button class="inspect" onclick="openModal('pie')">Inspect</button>
-          </div>
-          <div class="chart-host" id="chart-pie"></div>
-        </div>
-        <div class="panel">
-          <div class="panel-head">
-            <h3>Quantity Sold</h3>
-            <button class="inspect" onclick="openModal('bar')">Inspect</button>
-          </div>
-          <div class="chart-host" id="chart-bar"></div>
-        </div>
+  <!-- CHARTS — first thing after the name -->
+  <section>
+    <div class="charts">
+      <div class="chart-card wide">
+        <h3>Monthly Sales Chart</h3>
+        <div class="sub">Total per order, labelled by Month — Rawdata!G2:G21 × B2:B21</div>
+        <div class="chart-host" id="chart-line"></div>
+      </div>
+      <div class="chart-card">
+        <h3>Product Wise Sales Pie Chart</h3>
+        <div class="sub">One slice per order — G2:G21 × C2:C21</div>
+        <div class="chart-host" id="chart-pie"></div>
+      </div>
+      <div class="chart-card">
+        <h3>Quantity Sold Chart</h3>
+        <div class="sub">Units per order — E2:E21 × C2:C21</div>
+        <div class="chart-host" id="chart-bar"></div>
       </div>
     </div>
   </section>
 
-  <footer>
-    <div class="wrap">Heavenly Layers · Business Intelligence Project</div>
-  </footer>
-</main>
-
-<div class="modal-back" id="modal" role="dialog" aria-modal="true" onclick="if(event.target===this)closeModal()">
-  <div class="modal">
-    <header>
-      <h3 id="modal-title">Inspect</h3>
-      <button class="x" onclick="closeModal()" aria-label="Close">✕</button>
-    </header>
-    <div class="modal-body">
-      <div class="tabs" id="tabs">
-        <button class="tab active" data-pane="data">Data</button>
-        <button class="tab" data-pane="formula">Formula</button>
-        <button class="tab" data-pane="edit">Edit</button>
+  <!-- INLINE EDITOR + KPIs side by side (no modal) -->
+  <section>
+    <div class="edit-grid">
+      <div class="panel">
+        <h2>Raw data</h2>
+        <div class="hint">Edit any Quantity or Price — every chart and metric updates live.</div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Id</th><th>Month</th><th>Product</th><th style="text-align:right">Qty</th><th style="text-align:right">Price</th><th style="text-align:right">Total</th></tr>
+            </thead>
+            <tbody id="rows"></tbody>
+          </table>
+        </div>
+        <div class="table-foot">
+          <button class="reset" onclick="resetData()">Reset to original</button>
+          <div class="total">Sum of Total: <b id="sum-total">—</b></div>
+        </div>
       </div>
-      <div class="pane active" id="pane-data"></div>
-      <div class="pane" id="pane-formula"></div>
-      <div class="pane" id="pane-edit"></div>
-      <div class="actions">
-        <button class="btn" onclick="resetData()">Reset data</button>
-        <button class="btn primary" onclick="closeModal()">Close</button>
+
+      <div class="panel">
+        <h2>Analysis</h2>
+        <div class="hint">Same formulas as the Analysis sheet in the workbook.</div>
+        <div class="kpi-list" id="kpis"></div>
       </div>
     </div>
-  </div>
+  </section>
+
+  <!-- KEY FINDINGS from the Dashboard sheet -->
+  <section>
+    <h2>Key findings</h2>
+    <div class="findings">
+      <div class="finding"><b>01</b>Donut box has the highest total sales.</div>
+      <div class="finding"><b>02</b>Sales increased from January to July.</div>
+      <div class="finding"><b>03</b>Cookies had lower sales compared to cakes and donuts.</div>
+      <div class="finding"><b>04</b>Bakery products were sold consistently every month.</div>
+    </div>
+  </section>
+
+  <footer>Heavenly Layers · Business Intelligence Project</footer>
 </div>
 
 <script>
 const ORIGINAL = [
-  [101,"Jan", "Chocolate cake","Cake",        5,2500],
-  [102,"Jan", "Donut box",     "Donut",       8,1200],
-  [103,"Jan", "Cookies",       "Snacks",     10, 500],
-  [104,"Feb", "Brownie",       "Dessert",     6, 900],
-  [105,"Feb", "Bread",         "Bakery item",15, 250],
-  [106,"Feb", "Pastry",        "Pastry",      9, 700],
-  [107,"Mar", "Chocolate cake","Cake",        7,2500],
-  [108,"Mar", "Donut box",     "Donut",      12,1200],
-  [109,"Mar", "Cookies",       "Snacks",     11, 500],
-  [110,"Apr", "Brownie",       "Dessert",     8, 900],
-  [111,"Apr", "Bread",         "Bakery item",18, 250],
-  [112,"Apr", "Pastry",        "Dessert",    10, 700],
-  [113,"May", "Chocolate cake","Cake",        9,2500],
-  [114,"May", "Donut box",     "Donut",      14,1200],
-  [115,"May", "Cookies",       "Snacks",     13, 500],
-  [116,"Jun", "Brownie",       "Dessert",    10, 900],
-  [117,"Jun", "Bread",         "Bakery item",20, 250],
-  [118,"Jun", "Pastry",        "Dessert",    12, 700],
-  [119,"July","Chocolate cake","Cake",       11,2500],
-  [120,"July","Donut box",     "Donut",      15,1200],
-].map(r=>({id:r[0],month:r[1],product:r[2],category:r[3],qty:r[4],price:r[5]}));
+  [101,"Jan", "Chocolate cake", 5,2500],
+  [102,"Jan", "Donut box",      8,1200],
+  [103,"Jan", "Cookies",       10, 500],
+  [104,"Feb", "Brownie",        6, 900],
+  [105,"Feb", "Bread",         15, 250],
+  [106,"Feb", "Pastry",         9, 700],
+  [107,"Mar", "Chocolate cake", 7,2500],
+  [108,"Mar", "Donut box",     12,1200],
+  [109,"Mar", "Cookies",       11, 500],
+  [110,"Apr", "Brownie",        8, 900],
+  [111,"Apr", "Bread",         18, 250],
+  [112,"Apr", "Pastry",        10, 700],
+  [113,"May", "Chocolate cake", 9,2500],
+  [114,"May", "Donut box",     14,1200],
+  [115,"May", "Cookies",       13, 500],
+  [116,"Jun", "Brownie",       10, 900],
+  [117,"Jun", "Bread",         20, 250],
+  [118,"Jun", "Pastry",        12, 700],
+  [119,"July","Chocolate cake",11,2500],
+  [120,"July","Donut box",     15,1200],
+].map(r=>({id:r[0],month:r[1],product:r[2],qty:r[3],price:r[4]}));
 
 let ROWS = clone(ORIGINAL);
 function clone(a){return a.map(r=>({...r}))}
-
 const total = r => r.qty * r.price;
-const SUM   = (arr,sel)=>arr.reduce((s,r)=>s+sel(r),0);
-const AVG   = (arr,sel)=>arr.length?SUM(arr,sel)/arr.length:0;
-const MAX   = (arr,sel)=>arr.reduce((m,r)=>Math.max(m,sel(r)),-Infinity);
-const MIN   = (arr,sel)=>arr.reduce((m,r)=>Math.min(m,sel(r)),+Infinity);
+const SUM   = (a,sel)=>a.reduce((s,r)=>s+sel(r),0);
+const AVG   = (a,sel)=>a.length?SUM(a,sel)/a.length:0;
+const MAX   = (a,sel)=>a.reduce((m,r)=>Math.max(m,sel(r)),-Infinity);
+const MIN   = (a,sel)=>a.reduce((m,r)=>Math.min(m,sel(r)),+Infinity);
+const fmt   = n=>n.toLocaleString("en-US",{maximumFractionDigits:2});
+const fmt0  = n=>Math.round(n).toLocaleString("en-US");
 
-const fmt  = n=>n.toLocaleString("en-US",{maximumFractionDigits:2});
-const fmt0 = n=>Math.round(n).toLocaleString("en-US");
-
+/* KPIs — exactly the 5 from the Analysis sheet */
+const KPI_DEFS = [
+  {key:"totalSales", label:"Total Sales",         cur:true,  formula:"=SUM(Rawdata!G2:G21)"},
+  {key:"avgSale",    label:"Average Sales",       cur:true,  formula:"=AVERAGE(Rawdata!G2:G21)"},
+  {key:"maxSale",    label:"Highest Sales",       cur:true,  formula:"=MAX(Rawdata!G2:G21)"},
+  {key:"minSale",    label:"Lower Sales",         cur:true,  formula:"=MIN(Rawdata!G2:G21)"},
+  {key:"totalQty",   label:"Total Quantity Sold", cur:false, formula:"=SUM(Rawdata!E2:E21)"},
+];
 function metrics(){
   return {
     totalSales:SUM(ROWS,total),
@@ -285,86 +233,94 @@ function metrics(){
     maxSale:MAX(ROWS,total),
     minSale:MIN(ROWS,total),
     totalQty:SUM(ROWS,r=>r.qty),
-    orderCount:ROWS.length,
   };
 }
-
-const KPI_DEFS = [
-  {key:"totalSales", label:"Total Sales",         cur:true,  formula:"SUM(Rawdata!G2:G21)"},
-  {key:"avgSale",    label:"Average Sales",       cur:true,  formula:"AVERAGE(Rawdata!G2:G21)"},
-  {key:"maxSale",    label:"Highest Sales",       cur:true,  formula:"MAX(Rawdata!G2:G21)"},
-  {key:"minSale",    label:"Lower Sales",         cur:true,  formula:"MIN(Rawdata!G2:G21)"},
-  {key:"totalQty",   label:"Total Quantity",      cur:false, formula:"SUM(Rawdata!E2:E21)"},
-  {key:"orderCount", label:"Orders",              cur:false, formula:"COUNT(Rawdata!A2:A21)"},
-];
-
 function renderKPI(){
-  const m = metrics();
+  const m=metrics();
   document.getElementById("kpis").innerHTML = KPI_DEFS.map(d=>`
-    <div class="kpi">
-      <div class="lbl">${d.label}</div>
-      <div class="val">${d.cur?"₨ ":""}${d.cur?fmt0(m[d.key]):m[d.key]}</div>
+    <div class="row">
+      <div>
+        <div class="lbl">${d.label}</div>
+        <span class="form">${d.formula}</span>
+      </div>
+      <div class="val">${d.cur?"₨ ":""}${fmt(m[d.key])}</div>
     </div>`).join("");
+  document.getElementById("sum-total").textContent = "₨ "+fmt0(m.totalSales);
 }
 
-const PRODUCT_COLORS = {
-  "Chocolate cake":"#5cc2d6","Donut box":"#3aa5bd","Cookies":"#7fd7e6",
-  "Brownie":"#246a82","Bread":"#a8e0ea","Pastry":"#155269",
+/* Rows */
+function renderRows(){
+  document.getElementById("rows").innerHTML = ROWS.map((r,i)=>`
+    <tr>
+      <td>${r.id}</td><td>${r.month}</td><td>${r.product}</td>
+      <td class="num"><input type="number" min="0" step="1" data-i="${i}" data-k="qty"   value="${r.qty}"></td>
+      <td class="num"><input type="number" min="0" step="1" data-i="${i}" data-k="price" value="${r.price}"></td>
+      <td class="num" data-tot="${i}">₨ ${fmt0(total(r))}</td>
+    </tr>`).join("");
+  document.querySelectorAll('#rows input').forEach(inp=>{
+    inp.addEventListener("input",()=>{
+      const i=+inp.dataset.i, k=inp.dataset.k;
+      ROWS[i][k] = Math.max(0, +inp.value || 0);
+      document.querySelector(`[data-tot="${i}"]`).textContent = "₨ "+fmt0(total(ROWS[i]));
+      renderKPI();
+      renderCharts();
+    });
+  });
+}
+
+/* Charts — mirror the workbook exactly */
+const PCOLOR = {
+  "Chocolate cake":"#5cc2d6",
+  "Donut box":    "#3aa5bd",
+  "Cookies":      "#7fd7e6",
+  "Brownie":      "#246a82",
+  "Bread":        "#a8e0ea",
+  "Pastry":       "#155269",
 };
 const baseTheme = {
-  chart:{foreColor:"#8a9aa8",fontFamily:'"Poppins",sans-serif',toolbar:{show:false},animations:{enabled:true,easing:"easeinout",speed:600}},
+  chart:{foreColor:"#b9c7d2",fontFamily:'"Poppins",sans-serif',toolbar:{show:false},animations:{enabled:true,speed:400}},
   grid:{borderColor:"rgba(232,237,241,.07)",strokeDashArray:2},
-  tooltip:{theme:"dark",style:{fontFamily:'"Poppins",sans-serif'}},
+  tooltip:{theme:"dark"},
 };
 let lineChart,pieChart,barChart;
-
 function renderCharts(){
   const monthCats   = ROWS.map(r=>r.month);
-  const lineVals    = ROWS.map(r=>total(r));
   const productCats = ROWS.map(r=>r.product);
-  const pieVals     = ROWS.map(r=>total(r));
+  const lineVals    = ROWS.map(total);
+  const pieVals     = ROWS.map(total);
   const barVals     = ROWS.map(r=>r.qty);
-  const rowColors   = ROWS.map(r=>PRODUCT_COLORS[r.product]);
+  const rowColors   = ROWS.map(r=>PCOLOR[r.product]);
 
-  const lineOpts={
-    ...baseTheme,
+  const lineOpts={...baseTheme,
     series:[{name:"Total",data:lineVals}],
-    chart:{...baseTheme.chart,type:"line",height:340},
+    chart:{...baseTheme.chart,type:"line",height:320},
     stroke:{curve:"straight",width:2.5,colors:["#5cc2d6"]},
-    markers:{size:4,colors:["#06131f"],strokeColors:"#5cc2d6",strokeWidth:2,hover:{size:6}},
-    xaxis:{categories:monthCats,labels:{style:{colors:"#8a9aa8",fontSize:"11px"},rotate:-45,rotateAlways:true}},
+    markers:{size:4,strokeColors:"#5cc2d6",strokeWidth:2,colors:["#06131f"],hover:{size:6}},
+    xaxis:{categories:monthCats,labels:{rotate:-45,rotateAlways:true,style:{colors:"#8a9aa8",fontSize:"11px"}},axisBorder:{color:"rgba(232,237,241,.2)"},axisTicks:{color:"rgba(232,237,241,.2)"}},
     yaxis:{labels:{style:{colors:"#8a9aa8"},formatter:v=>fmt0(v)}},
     dataLabels:{enabled:false},
-    tooltip:{...baseTheme.tooltip,
-      x:{formatter:(_,o)=>{const r=ROWS[o.dataPointIndex];return r?`#${r.id} · ${r.month} · ${r.product}`:""}},
-      y:{formatter:v=>"₨ "+fmt0(v)}},
+    tooltip:{...baseTheme.tooltip,x:{formatter:(_,o)=>{const r=ROWS[o.dataPointIndex];return r?`#${r.id} · ${r.month} · ${r.product}`:""}},y:{formatter:v=>"₨ "+fmt0(v)}},
   };
 
-  const pieOpts={
-    ...baseTheme,
-    series:pieVals,
-    labels:ROWS.map(r=>`#${r.id} ${r.product}`),
-    chart:{...baseTheme.chart,type:"pie",height:360},
-    colors:rowColors,
-    stroke:{colors:["#0a1d2e"],width:1.5},
+  const pieOpts={...baseTheme,
+    series:pieVals,labels:ROWS.map(r=>`#${r.id} ${r.product}`),
+    chart:{...baseTheme.chart,type:"pie",height:340},
+    colors:rowColors,stroke:{colors:["#0a1d2e"],width:1.5},
     dataLabels:{enabled:false},
-    legend:{position:"bottom",labels:{colors:"#8a9aa8"},fontSize:"11px",markers:{size:6},itemMargin:{horizontal:6,vertical:2}},
+    legend:{position:"bottom",fontSize:"11px",labels:{colors:"#b9c7d2"},markers:{size:6},itemMargin:{horizontal:5,vertical:2}},
     tooltip:{...baseTheme.tooltip,y:{formatter:v=>"₨ "+fmt0(v)}},
   };
 
-  const barOpts={
-    ...baseTheme,
+  const barOpts={...baseTheme,
     series:[{name:"Quantity",data:barVals}],
-    chart:{...baseTheme.chart,type:"bar",height:360},
-    plotOptions:{bar:{borderRadius:3,columnWidth:"60%",distributed:true}},
+    chart:{...baseTheme.chart,type:"bar",height:340},
+    plotOptions:{bar:{borderRadius:2,columnWidth:"62%",distributed:true}},
     colors:rowColors,
     dataLabels:{enabled:false},
-    xaxis:{categories:productCats,labels:{style:{colors:"#8a9aa8",fontSize:"10px"},rotate:-55,rotateAlways:true,trim:false}},
+    xaxis:{categories:productCats,labels:{rotate:-55,rotateAlways:true,style:{colors:"#8a9aa8",fontSize:"10px"},trim:false},axisBorder:{color:"rgba(232,237,241,.2)"},axisTicks:{color:"rgba(232,237,241,.2)"}},
     yaxis:{labels:{style:{colors:"#8a9aa8"}}},
     legend:{show:false},
-    tooltip:{...baseTheme.tooltip,
-      x:{formatter:(_,o)=>{const r=ROWS[o.dataPointIndex];return r?`#${r.id} · ${r.month} · ${r.product}`:""}},
-      y:{formatter:v=>fmt0(v)+" units"}},
+    tooltip:{...baseTheme.tooltip,x:{formatter:(_,o)=>{const r=ROWS[o.dataPointIndex];return r?`#${r.id} · ${r.month} · ${r.product}`:""}},y:{formatter:v=>fmt0(v)+" units"}},
   };
 
   if(!lineChart){
@@ -378,116 +334,9 @@ function renderCharts(){
   }
 }
 
-let CURRENT=null;
-const TITLES={
-  line:"Monthly Sales",
-  pie :"Product Wise Sales",
-  bar :"Quantity Sold",
-};
-function openModal(kind){
-  CURRENT=kind;
-  document.getElementById("modal-title").textContent=TITLES[kind];
-  document.getElementById("modal").classList.add("open");
-  document.body.style.overflow="hidden";
-  switchTab("data"); renderPanes();
-}
-function closeModal(){document.getElementById("modal").classList.remove("open");document.body.style.overflow=""}
-document.addEventListener("keydown",e=>{if(e.key==="Escape")closeModal()});
-document.getElementById("tabs").addEventListener("click",e=>{if(e.target.matches(".tab"))switchTab(e.target.dataset.pane)});
-function switchTab(p){
-  document.querySelectorAll(".tab").forEach(t=>t.classList.toggle("active",t.dataset.pane===p));
-  document.querySelectorAll(".pane").forEach(x=>x.classList.toggle("active",x.id==="pane-"+p));
-}
-function renderPanes(){
-  document.getElementById("pane-data").innerHTML   =paneData(CURRENT);
-  document.getElementById("pane-formula").innerHTML=paneFormula(CURRENT);
-  document.getElementById("pane-edit").innerHTML   =paneEdit();
-  bindEdits();
-}
+function resetData(){ROWS=clone(ORIGINAL); renderRows(); renderKPI(); renderCharts();}
 
-function paneData(kind){
-  if(kind==="line"){
-    return `<table class="data"><thead><tr><th>Order</th><th>Month</th><th>Product</th><th style="text-align:right">Total</th></tr></thead><tbody>
-      ${ROWS.map(r=>`<tr><td>${r.id}</td><td>${r.month}</td><td>${r.product}</td><td class="num">₨ ${fmt0(total(r))}</td></tr>`).join("")}
-      <tr><td colspan="3" style="color:var(--muted)">Sum</td><td class="num"><b>₨ ${fmt0(SUM(ROWS,total))}</b></td></tr>
-    </tbody></table>`;
-  }
-  if(kind==="pie"){
-    const tot=SUM(ROWS,total);
-    return `<table class="data"><thead><tr><th>Order</th><th>Product</th><th style="text-align:right">Total</th><th style="text-align:right">Share</th></tr></thead><tbody>
-      ${ROWS.map(r=>`<tr><td>${r.id}</td><td>${r.product}</td><td class="num">₨ ${fmt0(total(r))}</td><td class="num">${(total(r)/tot*100).toFixed(1)}%</td></tr>`).join("")}
-    </tbody></table>`;
-  }
-  if(kind==="bar"){
-    return `<table class="data"><thead><tr><th>Order</th><th>Product</th><th style="text-align:right">Quantity</th></tr></thead><tbody>
-      ${ROWS.map(r=>`<tr><td>${r.id}</td><td>${r.product}</td><td class="num">${r.qty}</td></tr>`).join("")}
-      <tr><td colspan="2" style="color:var(--muted)">Sum</td><td class="num"><b>${SUM(ROWS,r=>r.qty)}</b></td></tr>
-    </tbody></table>`;
-  }
-}
-
-function paneFormula(kind){
-  if(kind==="line"){
-    return `<div class="formula"><b>Chart</b>      = Line
-<b>Title</b>      = "Monthly Sales Chart"
-<b>Values</b>     = <span class="res">Rawdata!G2:G21</span>
-<b>Categories</b> = <span class="res">Rawdata!B2:B21</span>   // Month
-
-Each point plots one order's Total = Quantity × Price.
-<b>Σ G2:G21</b> = <span class="res">₨ ${fmt0(SUM(ROWS,total))}</span></div>`;
-  }
-  if(kind==="pie"){
-    return `<div class="formula"><b>Chart</b>      = Pie
-<b>Title</b>      = "Product Wise Sales Pie Chart"
-<b>Values</b>     = <span class="res">Rawdata!G2:G21</span>
-<b>Labels</b>     = <span class="res">Rawdata!C2:C21</span>   // Product
-
-One slice per order, sized by Total.
-<b>Σ slices</b> = <span class="res">₨ ${fmt0(SUM(ROWS,total))}</span></div>`;
-  }
-  if(kind==="bar"){
-    return `<div class="formula"><b>Chart</b>      = Bar
-<b>Title</b>      = "Quantity Sold Chart"
-<b>Values</b>     = <span class="res">Rawdata!E2:E21</span>
-<b>Categories</b> = <span class="res">Rawdata!C2:C21</span>   // Product
-
-One bar per order, height = Quantity.
-<b>Σ E2:E21</b> = <span class="res">${SUM(ROWS,r=>r.qty)}</span></div>`;
-  }
-}
-
-function paneEdit(){
-  return `<p style="color:var(--muted);font-size:13px;margin:0 0 12px">Edit Quantity or Price — totals and charts update live.</p>
-  <div style="max-height:48vh;overflow:auto;border:1px solid var(--rule);border-radius:4px">
-  <table class="data">
-    <thead><tr><th>ID</th><th>Month</th><th>Product</th><th style="text-align:right">Qty</th><th style="text-align:right">Price</th><th style="text-align:right">Total</th></tr></thead>
-    <tbody>
-    ${ROWS.map((r,i)=>`<tr>
-      <td>${r.id}</td><td>${r.month}</td><td>${r.product}</td>
-      <td class="num"><input type="number" min="0" step="1" data-i="${i}" data-k="qty"   value="${r.qty}"></td>
-      <td class="num"><input type="number" min="0" step="1" data-i="${i}" data-k="price" value="${r.price}"></td>
-      <td class="num" data-total="${i}">₨ ${fmt0(total(r))}</td>
-    </tr>`).join("")}
-    </tbody></table></div>`;
-}
-function bindEdits(){
-  document.querySelectorAll('#pane-edit input').forEach(inp=>{
-    inp.addEventListener("input",()=>{
-      const i=+inp.dataset.i,k=inp.dataset.k,v=Math.max(0,+inp.value||0);
-      ROWS[i][k]=v;
-      document.querySelector(`[data-total="${i}"]`).textContent="₨ "+fmt0(total(ROWS[i]));
-      renderKPI(); renderCharts();
-      document.getElementById("pane-data").innerHTML=paneData(CURRENT);
-      document.getElementById("pane-formula").innerHTML=paneFormula(CURRENT);
-    });
-  });
-}
-function resetData(){ROWS=clone(ORIGINAL);renderKPI();renderCharts();renderPanes()}
-
-window.addEventListener("load",()=>{
-  renderKPI(); renderCharts();
-  console.log("Reconciliation:",{totalSales:metrics().totalSales,totalQty:metrics().totalQty});
-});
+renderRows(); renderKPI(); renderCharts();
 </script>
 </body>
 </html>
