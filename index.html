@@ -154,6 +154,22 @@
 
   :focus-visible{outline:2px solid var(--tide);outline-offset:2px}
 
+  /* Themed scrollbars (WebKit/Blink + Firefox) */
+  *{scrollbar-width:thin;scrollbar-color:rgba(92,194,214,.45) transparent}
+  *::-webkit-scrollbar{width:10px;height:10px}
+  *::-webkit-scrollbar-track{background:transparent}
+  *::-webkit-scrollbar-thumb{
+    background:linear-gradient(180deg,rgba(92,194,214,.55),rgba(58,165,189,.55));
+    border-radius:10px;border:2px solid var(--bg-2);
+  }
+  *::-webkit-scrollbar-thumb:hover{
+    background:linear-gradient(180deg,rgba(92,194,214,.85),rgba(58,165,189,.85));
+  }
+  *::-webkit-scrollbar-corner{background:transparent}
+  /* Match the table-wrap's slightly darker surface */
+  .table-wrap::-webkit-scrollbar-thumb{border-color:var(--bg-2)}
+  html::-webkit-scrollbar-thumb,body::-webkit-scrollbar-thumb{border-color:var(--bg)}
+
   /* Respect reduced-motion preference */
   @media(prefers-reduced-motion:reduce){
     .ambient{animation:none}
